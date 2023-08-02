@@ -22,5 +22,4 @@ run locally <br/>
   * Vite
   * React
   * Typescript
-  * Zustand
   * Styled-components
