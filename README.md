@@ -13,7 +13,7 @@ url: https://brunoandradebr.github.io/nzxt/
 <img src="print2.png" width=378 />
 <img src="print.gif" />
 
-# fully customizable
+# Fully customizable
 
 <img src="print3.png" width=678 />
 
