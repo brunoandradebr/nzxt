@@ -1,6 +1,7 @@
 import { Container } from './styles'
 
 import { useMonitoring } from 'hooks/useMonitoring'
+import { usePreferencesStore } from 'store/preferences'
 
 import { FiCpu as CpuIcon } from 'react-icons/fi'
 import { BsGpuCard as GpuIcon } from 'react-icons/bs'
@@ -10,26 +11,28 @@ import { VscPulse as LoadIcon } from 'react-icons/vsc'
 import { Progress } from 'components/Progress'
 
 export const DualMonitor = () => {
+  const preferencesStore = usePreferencesStore()
+
   const { cpu, gpu } = useMonitoring()
 
   const Cpu = () => (
     <div className="info-container">
       <div className="info-title">
-        <CpuIcon size={28} />
-        <span>{cpu?.name?.replace(/core/gi, '')}</span>
+        <CpuIcon color={preferencesStore.cpuColor} />
+        <span>{cpu?.name?.replace(/core/gi, '') ?? 'i9 11900K'}</span>
       </div>
       <div className="info-data">
-        <div className="info-icon">
-          <TempIcon size={22} />
+        <div className="info-icon tempeture">
+          <TempIcon color={preferencesStore.tempetureColor} />
         </div>
-        <div className="data">{cpu?.tempeture}°</div>
+        <div className="data">{cpu?.tempeture ?? 42}°</div>
       </div>
       <div className="info-data">
-        <div className="info-icon">
-          <LoadIcon size={22} />
+        <div className="info-icon load">
+          <LoadIcon color={preferencesStore.loadColor} />
         </div>
         <div className="data">
-          {cpu?.load}
+          {cpu?.load ?? 3}
           <span>%</span>
         </div>
       </div>
@@ -39,21 +42,21 @@ export const DualMonitor = () => {
   const Gpu = () => (
     <div className="info-container">
       <div className="info-title">
-        <GpuIcon size={28} />
-        <span>{gpu?.name?.replace(/nvidia geforce/gi, '')}</span>
+        <GpuIcon color={preferencesStore.gpuColor} />
+        <span>{gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}</span>
       </div>
       <div className="info-data">
-        <div className="info-icon">
-          <TempIcon size={22} />
+        <div className="info-icon tempeture">
+          <TempIcon color={preferencesStore.tempetureColor} />
         </div>
-        <div className="data">{gpu?.tempeture}°</div>
+        <div className="data">{gpu?.tempeture ?? 45}°</div>
       </div>
       <div className="info-data">
-        <div className="info-icon">
-          <LoadIcon size={22} />
+        <div className="info-icon load">
+          <LoadIcon color={preferencesStore.loadColor} />
         </div>
         <div className="data">
-          {gpu?.load}
+          {gpu?.load ?? 12}
           <span>%</span>
         </div>
       </div>
@@ -61,16 +64,15 @@ export const DualMonitor = () => {
   )
 
   return (
-    <Container>
+    <Container style={{ backgroundColor: preferencesStore.backgroundColor }}>
       <Progress
-        size={320}
-        lineWidth={26}
         leftValue={cpu?.tempeture}
         rightValue={gpu?.tempeture}
-        leftColor={'#8800ff'}
-        rightColor={'#00bbff'}
+        leftColor={preferencesStore.leftColor}
+        rightColor={preferencesStore.rightColor}
+        background={preferencesStore.circleBackground}
       >
-        <div className="monitoring">
+        <div className="monitoring" style={{ color: preferencesStore.textColor }}>
           <Cpu />
           <div className="info-separator"></div>
           <Gpu />

@@ -14,8 +14,9 @@
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
-    "styled-components": "^5.3.10"
+    "react-icons": "^4.11.0",
+    "styled-components": "^5.3.10",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@nzxt/web-integrations-types": "^0.2.0",

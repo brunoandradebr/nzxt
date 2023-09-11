@@ -1,5 +1,10 @@
+import React from 'react'
+
 import { createGlobalStyle } from 'styled-components'
 
+import { usePreferencesStore } from 'store/preferences'
+
+import { Preferences } from 'components/Preferences'
 import { DualMonitor } from 'components/DualMonitor'
 
 export const GlobalStyles = createGlobalStyle`
@@ -14,16 +19,28 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: black;
+    background-color: #191a1c;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.6rem;
+    font-size: 5vw;
 }
 `
 
 function App() {
+  const inKraken = window.location.search.includes('kraken=1')
+
+  const preferencesStore = usePreferencesStore()
+
+  React.useEffect(() => {
+    window.addEventListener('storage', event => {
+      const { state } = JSON.parse(event.newValue as string)
+
+      preferencesStore.updateAllModules(state)
+    })
+  }, [])
+
   return (
     <>
-      <DualMonitor />
+      {inKraken ? <DualMonitor /> : <Preferences />}
       <GlobalStyles />
     </>
   )

@@ -4,11 +4,12 @@ import { IProgressProps } from './types'
 import { Container } from './styles'
 
 export const Progress = (props: IProgressProps) => {
-  const lineWidth = props.lineWidth ?? 12
+  const displaySize = window.innerWidth
+  const lineWidth = displaySize / 12 ?? 12
   const thumbLineWidth = lineWidth
   const leftValue = props.leftValue ?? 0
   const rightValue = props.rightValue ?? 0
-  const size = props.size ?? 150
+  const size = displaySize ?? 150
   const radius = size * 0.5 - lineWidth / 2
   const circumference = radius * 2 * Math.PI
 

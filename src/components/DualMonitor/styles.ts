@@ -7,20 +7,18 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  color: #ffffff;
   border-radius: 100%;
-  background: #000000;
 
   .monitoring {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: inherit;
+    justify-content: space-between;
+    width: 80%;
     height: inherit;
-    gap: 25px;
   }
 
   .info-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,6 +42,12 @@ export const Container = styled.div`
     }
   }
 
+  .info-title {
+    svg {
+      font-size: 9vw;
+    }
+  }
+
   .info-container div:nth-child(2) div:nth-child(1) {
     color: #00e5ff;
   }
@@ -55,7 +59,7 @@ export const Container = styled.div`
   .info-data {
     display: flex;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 10vw;
 
     .info-icon {
       display: flex;
@@ -67,13 +71,20 @@ export const Container = styled.div`
       }
     }
 
+    .info-icon.tempeture svg {
+      font-size: 7vw;
+    }
+    .info-icon.load svg {
+      font-size: 7vw;
+    }
+
     .data {
       display: flex;
       align-items: baseline;
       min-width: 50px;
 
       span {
-        font-size: 1.8rem;
+        font-size: 6vw;
       }
     }
   }
