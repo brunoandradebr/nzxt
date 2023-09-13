@@ -1,7 +1,9 @@
 import { Container } from './styles'
 
+import { decToHex } from 'utils/utils'
+
 import { useMonitoring } from 'hooks/useMonitoring'
-import { usePreferencesStore } from 'store/preferences'
+import { useKrakenStore } from 'store/kraken'
 
 import { FiCpu as CpuIcon } from 'react-icons/fi'
 import { BsGpuCard as GpuIcon } from 'react-icons/bs'
@@ -11,25 +13,31 @@ import { VscPulse as LoadIcon } from 'react-icons/vsc'
 import { Progress } from 'components/Progress'
 
 export const DualMonitor = () => {
-  const preferencesStore = usePreferencesStore()
+  const krakenStore = useKrakenStore()
 
   const { cpu, gpu } = useMonitoring()
 
   const Cpu = () => (
     <div className="info-container">
       <div className="info-title">
-        <CpuIcon color={preferencesStore.cpuColor} />
+        <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
         <span>{cpu?.name?.replace(/core/gi, '') ?? 'i9 11900K'}</span>
       </div>
       <div className="info-data">
         <div className="info-icon tempeture">
-          <TempIcon color={preferencesStore.tempetureColor} />
+          <TempIcon
+            color={krakenStore.tempetureIcon.color}
+            opacity={krakenStore.tempetureIcon.alpha}
+          />
         </div>
         <div className="data">{cpu?.tempeture ?? 42}°</div>
       </div>
       <div className="info-data">
         <div className="info-icon load">
-          <LoadIcon color={preferencesStore.loadColor} />
+          <LoadIcon
+            color={krakenStore.loadIcon.color}
+            opacity={krakenStore.loadIcon.alpha}
+          />
         </div>
         <div className="data">
           {cpu?.load ?? 3}
@@ -42,18 +50,24 @@ export const DualMonitor = () => {
   const Gpu = () => (
     <div className="info-container">
       <div className="info-title">
-        <GpuIcon color={preferencesStore.gpuColor} />
+        <GpuIcon color={krakenStore.gpuIcon.color} opacity={krakenStore.gpuIcon.alpha} />
         <span>{gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}</span>
       </div>
       <div className="info-data">
         <div className="info-icon tempeture">
-          <TempIcon color={preferencesStore.tempetureColor} />
+          <TempIcon
+            color={krakenStore.tempetureIcon.color}
+            opacity={krakenStore.tempetureIcon.alpha}
+          />
         </div>
         <div className="data">{gpu?.tempeture ?? 45}°</div>
       </div>
       <div className="info-data">
         <div className="info-icon load">
-          <LoadIcon color={preferencesStore.loadColor} />
+          <LoadIcon
+            color={krakenStore.loadIcon.color}
+            opacity={krakenStore.loadIcon.alpha}
+          />
         </div>
         <div className="data">
           {gpu?.load ?? 12}
@@ -64,17 +78,35 @@ export const DualMonitor = () => {
   )
 
   return (
-    <Container style={{ backgroundColor: preferencesStore.backgroundColor }}>
+    <Container
+      style={{
+        backgroundColor:
+          krakenStore.background.color + decToHex(krakenStore.background.alpha * 100),
+      }}
+    >
       <Progress
         leftValue={cpu?.tempeture}
         rightValue={gpu?.tempeture}
-        leftColor={preferencesStore.leftColor}
-        rightColor={preferencesStore.rightColor}
-        background={preferencesStore.circleBackground}
+        leftCircleStart={krakenStore.leftCircleStart}
+        leftCircleEnd={krakenStore.leftCircleEnd}
+        rightCircleStart={krakenStore.rightCircleStart}
+        rightCircleEnd={krakenStore.rightCircleEnd}
+        background={krakenStore.circleBackground}
       >
-        <div className="monitoring" style={{ color: preferencesStore.textColor }}>
+        <div
+          className="monitoring"
+          style={{
+            color: krakenStore.text.color + decToHex(krakenStore.text.alpha * 100),
+          }}
+        >
           <Cpu />
-          <div className="info-separator"></div>
+          <div
+            className="info-separator"
+            style={{
+              borderColor: krakenStore.separator.color,
+              opacity: krakenStore.separator.alpha,
+            }}
+          ></div>
           <Gpu />
         </div>
       </Progress>

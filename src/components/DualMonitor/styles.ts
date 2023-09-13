@@ -27,7 +27,7 @@ export const Container = styled.div`
   .info-separator {
     height: 20%;
     width: 1px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid;
   }
 
   .info-title {
@@ -46,14 +46,6 @@ export const Container = styled.div`
     svg {
       font-size: 9vw;
     }
-  }
-
-  .info-container div:nth-child(2) div:nth-child(1) {
-    color: #00e5ff;
-  }
-
-  .info-container div:nth-child(3) div:nth-child(1) {
-    color: #00e5ff;
   }
 
   .info-data {

@@ -22,19 +22,28 @@ export const Progress = (props: IProgressProps) => {
         <defs>
           <linearGradient x1="50%" y1="100%" x2="0%" y2="0%" id="gradient-left">
             <stop
-              stopColor={props.leftColor ?? '#000'}
-              stopOpacity="1"
-              offset="26%"
+              stopColor={props?.leftCircleStart?.color ?? '#000'}
+              stopOpacity={props.leftCircleStart?.alpha}
+              offset="30%"
             ></stop>
-            <stop stopColor="rgba(0,0,0,.1)" offset="65%"></stop>
+            <stop
+              stopColor={props?.leftCircleEnd?.color}
+              stopOpacity={props.leftCircleEnd?.alpha}
+              offset="50%"
+            ></stop>
           </linearGradient>
+
           <linearGradient x1="50%" y1="100%" x2="0%" y2="0%" id="gradient-right">
             <stop
-              stopColor={props.rightColor ?? '#fff'}
-              stopOpacity="1"
-              offset="26%"
+              stopColor={props?.rightCircleStart?.color ?? '#fff'}
+              stopOpacity={props.rightCircleStart?.alpha}
+              offset="30%"
             ></stop>
-            <stop stopColor="rgba(0,0,0,.1)" offset="65%"></stop>
+            <stop
+              stopColor={props?.rightCircleEnd?.color}
+              stopOpacity={props.rightCircleEnd?.alpha}
+              offset="50%"
+            ></stop>
           </linearGradient>
         </defs>
 
@@ -44,7 +53,8 @@ export const Progress = (props: IProgressProps) => {
           cy={'50%'}
           r={`${radius}px`}
           strokeWidth={`${lineWidth}px`}
-          stroke={props.background ?? '#161616'}
+          stroke={props?.background?.color ?? '#161616'}
+          style={{ opacity: props.background?.alpha }}
         />
 
         <g className="ring-thumb-left">

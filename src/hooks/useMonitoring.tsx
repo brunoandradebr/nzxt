@@ -15,7 +15,7 @@ export const useMonitoring = () => {
           const { cpus, gpus, ram } = data
 
           const cpu = cpus.pop()
-          const gpu = gpus.pop()
+          const gpu = gpus.shift()
 
           setCpu({
             name: cpu?.name,
