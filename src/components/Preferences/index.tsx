@@ -81,7 +81,7 @@ export const Preferences = () => {
       <div className="header">
         <div className="info">
           <div className="title">
-            Dual Info <span>v1.0.1</span>
+            Dual Info <span>v1.0.2</span>
           </div>
 
           <div className="author">

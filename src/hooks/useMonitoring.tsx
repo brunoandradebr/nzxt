@@ -15,7 +15,15 @@ export const useMonitoring = () => {
           const { cpus, gpus, ram } = data
 
           const cpu = cpus.pop()
-          const gpu = gpus.shift()
+
+          let gpu
+
+          if (gpus.length > 1) {
+            const [mainGpu] = gpus.filter(card => !card.name.includes('Graphics'))
+            gpu = mainGpu
+          } else {
+            gpu = gpus.pop()
+          }
 
           setCpu({
             name: cpu?.name,

@@ -55,6 +55,6 @@ export const usePreferencesStore = create<IPreferencesStore>()(
       },
     }),
 
-    { name: 'nzxt-preferences', version: 1 },
+    { name: 'nzxt-preferences', version: 2 },
   ),
 )
