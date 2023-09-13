@@ -1,10 +1,10 @@
-# nzxt
+# NZXT
 
-[web integrations](https://developer.nzxt.com/) for the NZXT Kraken series.
+[Web integrations](https://developer.nzxt.com/) for the NZXT Kraken series.
 
 An integration to monitor CPU and GPU information (load and temperature) with web technologies using NZXT web integrations API.
 
-# Use in kraken web integration
+# Use in Kraken web integration
 
 URL: https://brunoandradebr.github.io/nzxt/
 
@@ -24,7 +24,7 @@ install dependencies <br/>
 run locally <br/>
 `yarn dev`
 
-# Tecnologies
+# Technologies
 
 - Vite
 - React
