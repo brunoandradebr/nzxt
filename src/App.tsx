@@ -61,6 +61,11 @@ function App() {
   const krakenStore = useKrakenStore()
 
   React.useEffect(() => {
+    if (inKraken === false) {
+      if (!window.location.search)
+        window.location.replace(`?no-cache=${crypto.randomUUID()}`)
+    }
+
     preferencesStore.changeTheme(preferencesStore.lastUsedTheme)
 
     const handleKrakenChange = (event: StorageEvent) => {
