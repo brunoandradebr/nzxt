@@ -2,7 +2,7 @@
 
 [web integrations](https://developer.nzxt.com/) for the NZXT Kraken series.
 
-An integration to monitor cpu, gpu and ram information using web tecnologies using nzxt web integrations api.
+An integration to monitor cpu and gpu information (load and tempeture) using web tecnologies using nzxt web integrations api.
 
 # Use in kraken web integration
 
