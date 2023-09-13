@@ -20,16 +20,16 @@ export const useMonitoring = () => {
           setCpu({
             name: cpu?.name,
             load: Number(((cpu?.load ?? 1) * 100).toFixed(0)) ?? 0,
-            tempeture: Number(cpu?.temperature?.toFixed(0)),
-            maxTempeture: Number(cpu?.maxTemperature),
+            temperature: Number(cpu?.temperature?.toFixed(0)),
+            maxTemperature: Number(cpu?.maxTemperature),
             frequency: Number(cpu?.frequency),
           })
 
           setGpu({
             name: gpu?.name,
             load: Number(((gpu?.load ?? 1) * 100).toFixed(0)) ?? 0,
-            tempeture: Number(gpu?.temperature?.toFixed(0)),
-            maxTempeture: Number(gpu?.maxTemperature),
+            temperature: Number(gpu?.temperature?.toFixed(0)),
+            maxTemperature: Number(gpu?.maxTemperature),
             frequency: Number(gpu?.frequency),
           })
 

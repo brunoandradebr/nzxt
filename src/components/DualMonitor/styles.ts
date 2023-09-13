@@ -63,7 +63,7 @@ export const Container = styled.div`
       }
     }
 
-    .info-icon.tempeture svg {
+    .info-icon.temperature svg {
       font-size: 7vw;
     }
     .info-icon.load svg {

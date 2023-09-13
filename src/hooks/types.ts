@@ -1,16 +1,16 @@
 export interface ICpu {
   name?: string
   load?: number
-  tempeture?: number
-  maxTempeture?: number
+  temperature?: number
+  maxTemperature?: number
   frequency?: number
 }
 
 export interface IGpu {
   name?: string
   load?: number
-  tempeture?: number
-  maxTempeture?: number
+  temperature?: number
+  maxTemperature?: number
   frequency?: number
 }
 

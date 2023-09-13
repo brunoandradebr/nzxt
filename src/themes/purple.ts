@@ -8,7 +8,7 @@ export const theme: IPreferenceModule = {
   circleBackground: { color: '#161616', alpha: 1 },
   cpuIcon: { color: '#ffffff', alpha: 1 },
   gpuIcon: { color: '#ffffff', alpha: 1 },
-  tempetureIcon: { color: '#00e5ff', alpha: 1 },
+  temperatureIcon: { color: '#00e5ff', alpha: 1 },
   loadIcon: { color: '#00e5ff', alpha: 1 },
   text: { color: '#ffffff', alpha: 1 },
   background: { color: '#000000', alpha: 1 },

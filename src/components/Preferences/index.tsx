@@ -23,10 +23,10 @@ const modules: { name: keyof IPreferenceModule; label: string }[][] = [
     { name: 'circleBackground', label: 'Circle background' },
   ],
   [
-    { name: 'cpuIcon', label: 'Cpu icon' },
-    { name: 'gpuIcon', label: 'Gpu icon' },
-    { name: 'tempetureIcon', label: 'Tempeture icon' },
-    { name: 'loadIcon', label: 'Load icon' },
+    { name: 'cpuIcon', label: 'CPU' },
+    { name: 'gpuIcon', label: 'GPU' },
+    { name: 'temperatureIcon', label: 'Temperature' },
+    { name: 'loadIcon', label: 'Load' },
   ],
   [
     { name: 'text', label: 'Text' },

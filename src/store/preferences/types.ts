@@ -11,7 +11,7 @@ export interface IPreferenceModule {
   circleBackground: TModuleProperties
   cpuIcon: TModuleProperties
   gpuIcon: TModuleProperties
-  tempetureIcon: TModuleProperties
+  temperatureIcon: TModuleProperties
   loadIcon: TModuleProperties
   text: TModuleProperties
   background: TModuleProperties

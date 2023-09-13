@@ -24,13 +24,13 @@ export const DualMonitor = () => {
         <span>{cpu?.name?.replace(/core/gi, '') ?? 'i9 11900K'}</span>
       </div>
       <div className="info-data">
-        <div className="info-icon tempeture">
+        <div className="info-icon temperature">
           <TempIcon
-            color={krakenStore.tempetureIcon.color}
-            opacity={krakenStore.tempetureIcon.alpha}
+            color={krakenStore.temperatureIcon.color}
+            opacity={krakenStore.temperatureIcon.alpha}
           />
         </div>
-        <div className="data">{cpu?.tempeture ?? 42}°</div>
+        <div className="data">{cpu?.temperature ?? 42}°</div>
       </div>
       <div className="info-data">
         <div className="info-icon load">
@@ -54,13 +54,13 @@ export const DualMonitor = () => {
         <span>{gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}</span>
       </div>
       <div className="info-data">
-        <div className="info-icon tempeture">
+        <div className="info-icon temperature">
           <TempIcon
-            color={krakenStore.tempetureIcon.color}
-            opacity={krakenStore.tempetureIcon.alpha}
+            color={krakenStore.temperatureIcon.color}
+            opacity={krakenStore.temperatureIcon.alpha}
           />
         </div>
-        <div className="data">{gpu?.tempeture ?? 45}°</div>
+        <div className="data">{gpu?.temperature ?? 45}°</div>
       </div>
       <div className="info-data">
         <div className="info-icon load">
@@ -85,8 +85,8 @@ export const DualMonitor = () => {
       }}
     >
       <Progress
-        leftValue={cpu?.tempeture}
-        rightValue={gpu?.tempeture}
+        leftValue={cpu?.temperature}
+        rightValue={gpu?.temperature}
         leftCircleStart={krakenStore.leftCircleStart}
         leftCircleEnd={krakenStore.leftCircleEnd}
         rightCircleStart={krakenStore.rightCircleStart}
