@@ -10,7 +10,7 @@ export const Container = styled.div`
   .header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 20px;
     padding: 20px 20px;
@@ -54,6 +54,7 @@ export const Container = styled.div`
 
     .panel {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
 
