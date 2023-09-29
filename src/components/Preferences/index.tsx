@@ -2,7 +2,7 @@ import React from 'react'
 
 import { usePreferencesStore } from 'store/preferences'
 
-import { IPreferenceModule, TModuleProperties } from 'store/preferences/types'
+import { IModules, TModuleProperties } from 'store/preferences/types'
 
 import { useDebounce } from 'hooks'
 
@@ -13,6 +13,7 @@ import {
   AiFillGithub as GitIcon,
   AiOutlineInstagram as InstagramIcon,
   AiOutlineYoutube as YoutubeIcon,
+  AiOutlineSearch as SearchIcon,
 } from 'react-icons/ai'
 
 import { Range } from './components/Range'
@@ -22,7 +23,7 @@ import { Container } from './styles'
 const apiKey = 'RMUvQgDHrRD2kTPIf9WE37smxErmcViv'
 const gf = new GiphyFetch(apiKey)
 
-const modules: { name: keyof IPreferenceModule; label: string }[][] = [
+const modules: { name: keyof IModules; label: string }[][] = [
   [
     { name: 'leftCircleStart', label: 'Left circle (start)' },
     { name: 'leftCircleEnd', label: 'Left circle (end)' },
@@ -61,10 +62,7 @@ export const Preferences = () => {
     preferencesStore.changeTheme(theme)
   }
 
-  const handleModuleUpdate = (
-    name: keyof IPreferenceModule,
-    properties: TModuleProperties,
-  ) => {
+  const handleModuleUpdate = (name: keyof IModules, properties: TModuleProperties) => {
     clearTimeout(debounce)
 
     const debounceId = setTimeout(() => {
@@ -147,16 +145,39 @@ export const Preferences = () => {
       <div className="modules">
         <div className="module-segment">
           <div className="module-segmentLabel">GIF</div>
-          <input
-            value={searchTerm}
-            onChange={event => setSearchTerm(event.target.value)}
-          />
-          <Carousel
-            key={debouncedTerm as string}
-            gifHeight={130}
-            noLink
-            fetchGifs={fetchGifs}
-          />
+
+          <div className="gif-module">
+            <div className="gif-selected">
+              {preferencesStore.current.gif.url && (
+                <>
+                  <img src={preferencesStore.current.gif.url} width={120} />
+                  <Range label="Size" value={1} />
+                  <Range label="Blur" value={0} />
+                  <Range label="Alpha" value={1} />
+                </>
+              )}
+            </div>
+
+            <div className="gif-search">
+              <div className="gif-searchInput">
+                <input
+                  value={searchTerm}
+                  onChange={event => setSearchTerm(event.target.value)}
+                  placeholder="search"
+                />
+                <SearchIcon />
+              </div>
+              <Carousel
+                key={debouncedTerm as string}
+                gifHeight={130}
+                noLink
+                fetchGifs={fetchGifs}
+                onGifClick={gif =>
+                  preferencesStore.updateGif({ url: gif.images.original.url })
+                }
+              />
+            </div>
+          </div>
         </div>
 
         {modules.map((segment, index) => (

@@ -151,5 +151,41 @@ export const Container = styled.div`
         border: none;
       }
     }
+
+    .gif-module {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gif-selected {
+    }
+
+    .gif-search {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-x: auto;
+      max-width: calc(100vw - 200px);
+
+      .gif-searchInput {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      input {
+        outline: none;
+        padding: 5px;
+        border-radius: 3px;
+        color: var(--text-primary-color);
+        background-color: var(--background-contrast-color);
+        border: 1px solid var(--background-contrast-lighter-color);
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
   }
 `

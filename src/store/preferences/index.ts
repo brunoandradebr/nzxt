@@ -4,7 +4,7 @@ import { produce } from 'immer'
 
 import { purpleTheme } from 'themes'
 
-import { IPreferencesStore } from './types'
+import { IPreferencesStore, TGifModuleProperties } from './types'
 
 const initialState = purpleTheme
 
@@ -24,6 +24,14 @@ export const usePreferencesStore = create<IPreferencesStore>()(
         set(
           produce((state: IPreferencesStore) => {
             state.current[module] = value
+          }),
+        )
+      },
+
+      updateGif: (properties: TGifModuleProperties) => {
+        set(
+          produce((state: IPreferencesStore) => {
+            state.current.gif = { ...state.current.gif, ...properties }
           }),
         )
       },

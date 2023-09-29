@@ -11,12 +11,9 @@ import { FaTemperatureLow as TempIcon } from 'react-icons/fa'
 import { VscPulse as LoadIcon } from 'react-icons/vsc'
 
 import { Progress } from 'components/Progress'
-import React from 'react'
 
 export const DualMonitor = () => {
   const krakenStore = useKrakenStore()
-
-  const [selectedGif, setSelectedGif] = React.useState('')
 
   const { cpu, gpu } = useMonitoring()
 
@@ -87,7 +84,7 @@ export const DualMonitor = () => {
           krakenStore.background.color + decToHex(krakenStore.background.alpha * 100),
       }}
     >
-      <img src={selectedGif} width={'100%'} />
+      <img src={krakenStore.gif.url} width={'100%'} />
 
       <Progress
         leftValue={cpu?.temperature}
