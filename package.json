@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@giphy/js-fetch-api": "^5.1.0",
+    "@giphy/react-components": "^9.0.1",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "immer": "^10.0.2",

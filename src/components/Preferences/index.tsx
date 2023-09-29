@@ -4,6 +4,9 @@ import { usePreferencesStore } from 'store/preferences'
 
 import { IPreferenceModule, TModuleProperties } from 'store/preferences/types'
 
+import { Carousel } from '@giphy/react-components'
+import { GiphyFetch } from '@giphy/js-fetch-api'
+
 import {
   AiFillGithub as GitIcon,
   AiOutlineInstagram as InstagramIcon,
@@ -13,6 +16,9 @@ import {
 import { Range } from './components/Range'
 
 import { Container } from './styles'
+
+const apiKey = 'RMUvQgDHrRD2kTPIf9WE37smxErmcViv'
+const gf = new GiphyFetch(apiKey)
 
 const modules: { name: keyof IPreferenceModule; label: string }[][] = [
   [
@@ -39,6 +45,9 @@ export const Preferences = () => {
   const preferencesStore = usePreferencesStore()
 
   const [debounce, setDebounce] = React.useState<number | undefined>()
+  const [searchDebounce, setSearchDebounce] = React.useState<number | undefined>()
+
+  const [searchTerm, setSearchTerm] = React.useState('')
 
   const notModified =
     JSON.stringify(preferencesStore.current) ===
@@ -75,6 +84,18 @@ export const Preferences = () => {
     if (window.confirm('Do you really want to do this?'))
       preferencesStore.discardChanges()
   }
+
+  const fetchGifs = React.useCallback(
+    (offset: number) => {
+      clearTimeout(searchDebounce)
+      const searchDebounceId = setTimeout(
+        () => gf.search(searchTerm, { offset, limit: 10, type: 'gifs' }),
+        1000,
+      )
+      setSearchDebounce(searchDebounceId)
+    },
+    [searchTerm, searchDebounce],
+  )
 
   return (
     <Container>
@@ -130,6 +151,15 @@ export const Preferences = () => {
       </div>
 
       <div className="modules">
+        <div className="module-segment">
+          <div className="module-segmentLabel">GIF</div>
+          <input
+            value={searchTerm}
+            onChange={event => setSearchTerm(event.target.value)}
+          />
+          <Carousel key={searchTerm} gifHeight={130} noLink fetchGifs={fetchGifs} />
+        </div>
+
         {modules.map((segment, index) => (
           <div className="module-segment" key={index}>
             <div className="module-segmentLabel">
