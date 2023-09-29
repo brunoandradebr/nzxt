@@ -2,7 +2,7 @@ import { Container } from './styles'
 
 import { decToHex } from 'utils/utils'
 
-import { useMonitoring } from 'hooks/useMonitoring'
+import { useMonitoring } from 'hooks'
 import { useKrakenStore } from 'store/kraken'
 
 import { FiCpu as CpuIcon } from 'react-icons/fi'

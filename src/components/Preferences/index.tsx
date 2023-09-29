@@ -4,6 +4,8 @@ import { usePreferencesStore } from 'store/preferences'
 
 import { IPreferenceModule, TModuleProperties } from 'store/preferences/types'
 
+import { useDebounce } from 'hooks'
+
 import { Carousel } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 
@@ -45,9 +47,10 @@ export const Preferences = () => {
   const preferencesStore = usePreferencesStore()
 
   const [debounce, setDebounce] = React.useState<number | undefined>()
-  const [searchDebounce, setSearchDebounce] = React.useState<number | undefined>()
 
   const [searchTerm, setSearchTerm] = React.useState('')
+
+  const debouncedTerm = useDebounce(searchTerm, 1000)
 
   const notModified =
     JSON.stringify(preferencesStore.current) ===
@@ -85,17 +88,8 @@ export const Preferences = () => {
       preferencesStore.discardChanges()
   }
 
-  const fetchGifs = React.useCallback(
-    (offset: number) => {
-      clearTimeout(searchDebounce)
-      const searchDebounceId = setTimeout(
-        () => gf.search(searchTerm, { offset, limit: 10, type: 'gifs' }),
-        1000,
-      )
-      setSearchDebounce(searchDebounceId)
-    },
-    [searchTerm, searchDebounce],
-  )
+  const fetchGifs = (offset: number) =>
+    gf.search(debouncedTerm as string, { offset, limit: 10, type: 'gifs' })
 
   return (
     <Container>
@@ -157,7 +151,12 @@ export const Preferences = () => {
             value={searchTerm}
             onChange={event => setSearchTerm(event.target.value)}
           />
-          <Carousel key={searchTerm} gifHeight={130} noLink fetchGifs={fetchGifs} />
+          <Carousel
+            key={debouncedTerm as string}
+            gifHeight={130}
+            noLink
+            fetchGifs={fetchGifs}
+          />
         </div>
 
         {modules.map((segment, index) => (
