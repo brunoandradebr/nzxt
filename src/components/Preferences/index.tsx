@@ -1,222 +1,34 @@
-import React from 'react'
+import { Header } from './components/Header'
 
-import { usePreferencesStore } from 'store/preferences'
-
-import { IModules, TModuleProperties } from 'store/preferences/types'
-
-import { useDebounce } from 'hooks'
-
-import { Carousel } from '@giphy/react-components'
-import { GiphyFetch } from '@giphy/js-fetch-api'
-
-import {
-  AiFillGithub as GitIcon,
-  AiOutlineInstagram as InstagramIcon,
-  AiOutlineYoutube as YoutubeIcon,
-  AiOutlineSearch as SearchIcon,
-} from 'react-icons/ai'
-
-import { Range } from './components/Range'
+import { GifModule, CirclesModule, IconsModule, MiscModule } from './components/Modules'
 
 import { Container } from './styles'
 
-const apiKey = 'RMUvQgDHrRD2kTPIf9WE37smxErmcViv'
-const gf = new GiphyFetch(apiKey)
-
-const modules: { name: keyof IModules; label: string }[][] = [
-  [
-    { name: 'leftCircleStart', label: 'Left circle (start)' },
-    { name: 'leftCircleEnd', label: 'Left circle (end)' },
-    { name: 'rightCircleStart', label: 'Right circle (start)' },
-    { name: 'rightCircleEnd', label: 'Right circle (end)' },
-    { name: 'circleBackground', label: 'Circle background' },
-  ],
-  [
-    { name: 'cpuIcon', label: 'CPU' },
-    { name: 'gpuIcon', label: 'GPU' },
-    { name: 'temperatureIcon', label: 'Temperature' },
-    { name: 'loadIcon', label: 'Load' },
-  ],
-  [
-    { name: 'text', label: 'Text' },
-    { name: 'background', label: 'Background' },
-    { name: 'separator', label: 'Separator' },
-  ],
-]
-
 export const Preferences = () => {
-  const preferencesStore = usePreferencesStore()
-
-  const [debounce, setDebounce] = React.useState<number | undefined>()
-
-  const [searchTerm, setSearchTerm] = React.useState('')
-
-  const debouncedTerm = useDebounce(searchTerm, 1000)
-
-  const notModified =
-    JSON.stringify(preferencesStore.current) ===
-    JSON.stringify(preferencesStore.themes[preferencesStore.lastUsedTheme])
-
-  const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const theme = event.target.value
-    preferencesStore.changeTheme(theme)
-  }
-
-  const handleModuleUpdate = (name: keyof IModules, properties: TModuleProperties) => {
-    clearTimeout(debounce)
-
-    const debounceId = setTimeout(() => {
-      preferencesStore.updateModule(name, properties)
-    }, 200)
-
-    setDebounce(debounceId)
-  }
-
-  const handleSaveChanges = () => {
-    if (
-      window.confirm(
-        'Your user theme will be overwritten. Do you really want to do this?',
-      )
-    )
-      preferencesStore.saveTheme()
-  }
-
-  const handleDiscardChanges = () => {
-    if (window.confirm('Do you really want to do this?'))
-      preferencesStore.discardChanges()
-  }
-
-  const fetchGifs = (offset: number) =>
-    gf.search(debouncedTerm as string, { offset, limit: 10, type: 'gifs' })
-
   return (
     <Container>
-      <div className="header">
-        <div className="info">
-          <div className="title">
-            Dual Info <span>v1.0.3</span>
-          </div>
-
-          <div className="author">
-            <span>
-              by <i>Bruno Andrade</i>
-            </span>
-
-            <div className="author-social">
-              <a title="github" target="_blank" href="https://github.com/brunoandradebr">
-                <GitIcon size={22} />
-              </a>
-
-              <a
-                title="instagram"
-                target="_blank"
-                href="https://www.instagram.com/brunoandradebr/"
-              >
-                <InstagramIcon size={22} />
-              </a>
-
-              <a
-                title="youtube"
-                target="_blank"
-                href="https://www.youtube.com/channel/UCVnLOK7h2-zBRNtmZU8yxBQ"
-              >
-                <YoutubeIcon size={22} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="panel">
-          <select
-            defaultValue={preferencesStore.lastUsedTheme}
-            onChange={handleThemeChange}
-          >
-            <option value={'purple'}>Purple theme</option>
-            <option value={'user'}>User theme</option>
-          </select>
-
-          <button onClick={handleSaveChanges}>Save</button>
-          <button onClick={handleDiscardChanges} disabled={notModified}>
-            Discard
-          </button>
-        </div>
-      </div>
+      <Header />
 
       <div className="modules">
         <div className="module-segment">
           <div className="module-segmentLabel">GIF</div>
-
-          <div className="gif-module">
-            <div className="gif-selected">
-              {preferencesStore.current.gif.url && (
-                <>
-                  <img src={preferencesStore.current.gif.url} width={120} />
-                  <Range label="Size" value={1} />
-                  <Range label="Blur" value={0} />
-                  <Range label="Alpha" value={1} />
-                </>
-              )}
-            </div>
-
-            <div className="gif-search">
-              <div className="gif-searchInput">
-                <input
-                  value={searchTerm}
-                  onChange={event => setSearchTerm(event.target.value)}
-                  placeholder="search"
-                />
-                <SearchIcon />
-              </div>
-              <Carousel
-                key={debouncedTerm as string}
-                gifHeight={130}
-                noLink
-                fetchGifs={fetchGifs}
-                onGifClick={gif =>
-                  preferencesStore.updateGif({ url: gif.images.original.url })
-                }
-              />
-            </div>
-          </div>
+          <GifModule />
         </div>
 
-        {modules.map((segment, index) => (
-          <div className="module-segment" key={index}>
-            <div className="module-segmentLabel">
-              {index === 0 ? 'Circles' : index === 1 ? 'Icons' : 'Misc'}
-            </div>
+        <div className="module-segment">
+          <div className="module-segmentLabel">Circles</div>
+          <CirclesModule />
+        </div>
 
-            <div className="module-segmentList">
-              {segment.map(({ name, label }) => (
-                <div className="module" key={name}>
-                  <label htmlFor={name}>{label}</label>
-                  <input
-                    id={name}
-                    name={name}
-                    type="color"
-                    value={preferencesStore.current[name].color}
-                    onChange={event =>
-                      handleModuleUpdate(name, {
-                        color: event.target.value,
-                        alpha: preferencesStore.current[name].alpha,
-                      })
-                    }
-                  />
-                  <Range
-                    label="alpha"
-                    value={preferencesStore.current[name].alpha}
-                    onChange={event =>
-                      handleModuleUpdate(name, {
-                        color: preferencesStore.current[name].color,
-                        alpha: event.target.value as unknown as number,
-                      })
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+        <div className="module-segment">
+          <div className="module-segmentLabel">Icons</div>
+          <IconsModule />
+        </div>
+
+        <div className="module-segment">
+          <div className="module-segmentLabel">Misc</div>
+          <MiscModule />
+        </div>
       </div>
     </Container>
   )

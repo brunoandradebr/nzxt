@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { produce } from 'immer'
 
-import { purpleTheme } from 'themes'
+import { purpleTheme, gifTheme } from 'themes'
 
 import { IPreferencesStore, TGifModuleProperties } from './types'
 
@@ -17,13 +17,14 @@ export const usePreferencesStore = create<IPreferencesStore>()(
 
       themes: {
         purple: purpleTheme,
+        gif: gifTheme,
         user: initialState,
       },
 
-      updateModule: (module, value) => {
+      updateModule: (module, properties) => {
         set(
           produce((state: IPreferencesStore) => {
-            state.current[module] = value
+            state.current[module] = { ...state.current[module], ...properties }
           }),
         )
       },
@@ -32,6 +33,22 @@ export const usePreferencesStore = create<IPreferencesStore>()(
         set(
           produce((state: IPreferencesStore) => {
             state.current.gif = { ...state.current.gif, ...properties }
+          }),
+        )
+      },
+
+      removeGif: () => {
+        set(
+          produce((state: IPreferencesStore) => {
+            state.current.gif = {
+              url: '',
+              blend: 'normal',
+              size: 0.2,
+              blur: 0,
+              brightness: 0.5,
+              contrast: 0.5,
+              alpha: 1,
+            }
           }),
         )
       },
@@ -63,6 +80,12 @@ export const usePreferencesStore = create<IPreferencesStore>()(
       },
     }),
 
-    { name: 'nzxt-preferences', version: 2 },
+    {
+      name: 'nzxt-preferences',
+      version: 3,
+      merge(persistedState, currentState) {
+        return { ...currentState, ...(persistedState as object) }
+      },
+    },
   ),
 )

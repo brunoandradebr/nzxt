@@ -1,5 +1,5 @@
-export interface IRangeProps
-  extends Pick<React.ComponentPropsWithRef<'input'>, 'onChange'> {
+export interface IRangeProps {
   value?: number
   label?: string
+  onChange?: (value: number) => void
 }

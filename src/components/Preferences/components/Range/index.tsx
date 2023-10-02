@@ -1,10 +1,14 @@
+import React from 'react'
+
+import { useDebounce } from 'hooks'
+
 import { IRangeProps } from './types'
 
 import { Container } from './styles'
-import React from 'react'
 
 export const Range = ({ label, ...props }: IRangeProps) => {
   const [value, setValue] = React.useState<number>(props.value ?? 0)
+  const debouncedValue = useDebounce(value, 200)
 
   React.useEffect(() => {
     setValue(props.value ?? 0)
@@ -13,9 +17,14 @@ export const Range = ({ label, ...props }: IRangeProps) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value as unknown as number
     setValue(value)
-
-    if (props.onChange) props.onChange(event)
   }
+
+  React.useEffect(() => {
+    if (debouncedValue) {
+      if (props.onChange) props.onChange(debouncedValue as number)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValue])
 
   return (
     <Container>

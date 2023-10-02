@@ -84,7 +84,21 @@ export const DualMonitor = () => {
           krakenStore.background.color + decToHex(krakenStore.background.alpha * 100),
       }}
     >
-      <img src={krakenStore.gif.url} width={'100%'} />
+      <video
+        autoPlay
+        loop
+        muted
+        src={krakenStore.gif.url}
+        width={`${(krakenStore.gif.size ?? 1) * 500}%`}
+        style={{
+          mixBlendMode: krakenStore.gif.blend,
+          filter: `blur(${(krakenStore.gif.blur ?? 1) * 10}px) opacity(${
+            krakenStore.gif.alpha
+          }) brightness(${(krakenStore.gif.brightness ?? 1) * 2}) contrast(${
+            (krakenStore.gif.contrast ?? 1) * 2
+          })`,
+        }}
+      />
 
       <Progress
         leftValue={cpu?.temperature}

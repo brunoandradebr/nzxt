@@ -13,6 +13,8 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --primary-color: #6f12e1;
     --primary-color-hover: #882df7;
+    --secondary-color: #8d8d8d;
+    --secondary-color-hover: #aaaaaa;
     --text-primary-color: #ffffff;
     --text-secondary-color: #58575a;
     --text-accent-color: #b476ff;
@@ -36,6 +38,57 @@ export const GlobalStyles = createGlobalStyle`
     background-color: var(--background-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 5vw;
+  }
+
+  input[type=text] {
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+    color: var(--text-primary-color);
+    background-color: var(--background-contrast-color);
+    border: 1px solid var(--background-contrast-lighter-color);
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  select {
+    color: var(--text-primary-color);
+    background-color: var(--background-contrast-color);
+    border: 2px solid var(--background-contrast-lighter-color);
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: var(--primary-color);
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
+
+    &:disabled {
+      cursor: initial;
+      color: var(--background-contrast-color);
+      background-color: var(--background-contrast-light-color);
+    }
+
+    &[data-secondary] {
+      background-color: var(--secondary-color);
+      
+      &:hover {
+        background-color: var(--secondary-color-hover);
+      }
+
+    }
+
   }
 
   ::-webkit-scrollbar {
@@ -79,6 +132,7 @@ function App() {
     window.addEventListener('storage', handleKrakenChange)
 
     return () => window.removeEventListener('storage', handleKrakenChange)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
