@@ -13,4 +13,13 @@ export const theme: IPreferenceModule = {
   text: { color: '#ffffff', alpha: 1 },
   background: { color: '#000000', alpha: 1 },
   separator: { color: '#313131', alpha: 1 },
+  gif: {
+    alpha: 1,
+    size: 0.2,
+    brightness: 0.5,
+    blend: 'normal',
+    contrast: 0.5,
+    blur: 0,
+    url: '',
+  },
 }

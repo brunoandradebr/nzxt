@@ -9,6 +9,11 @@ export const Container = styled.div`
   box-sizing: border-box;
   border-radius: 100%;
 
+  img,
+  video {
+    position: absolute;
+  }
+
   .monitoring {
     display: flex;
     align-items: center;
