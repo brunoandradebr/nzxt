@@ -21,7 +21,7 @@ export const DualMonitor = () => {
     <div className="info-container">
       <div className="info-title">
         <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
-        <span>{cpu?.name?.replace(/core/gi, '') ?? 'i9 11900K'}</span>
+        <span>{cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}</span>
       </div>
       <div className="info-data">
         <div className="info-icon temperature">
