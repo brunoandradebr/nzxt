@@ -14,6 +14,8 @@ import { Range } from 'components/Preferences/components/Range'
 import { Dialog } from 'components/Preferences/components/Dialog'
 import { IDialogActions } from 'components/Preferences/components/Dialog/types'
 
+import giphyLogo from './assets/giphy.gif'
+
 import { Container } from './styles'
 
 const apiKey = import.meta.env.VITE_GIPHY_API
@@ -36,7 +38,7 @@ export const GifModule = () => {
 
   const BlendSelect = () => (
     <div className="blendSelect">
-      <span>blend mode</span>
+      <span>Blend mode</span>
 
       <select
         defaultValue={preferencesStore.current.gif.blend}
@@ -145,6 +147,7 @@ export const GifModule = () => {
             placeholder="search gif"
           />
           <SearchIcon />
+          <img src={giphyLogo} height={36} />
         </div>
 
         <Grid
