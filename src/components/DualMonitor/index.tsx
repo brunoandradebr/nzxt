@@ -21,9 +21,14 @@ export const DualMonitor = () => {
     <div className="info-container">
       <div className="info-title">
         <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
-        <span>{cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}</span>
+        <span style={{ fontSize: `${1 * 5}vw` }}>
+          {cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}
+        </span>
       </div>
-      <div className="info-data">
+      <div
+        className="info-data"
+        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
+      >
         <div className="info-icon temperature">
           <TempIcon
             color={krakenStore.temperatureIcon.color}
@@ -32,7 +37,10 @@ export const DualMonitor = () => {
         </div>
         <div className="data">{cpu?.temperature ?? 42}°</div>
       </div>
-      <div className="info-data">
+      <div
+        className="info-data"
+        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
+      >
         <div className="info-icon load">
           <LoadIcon
             color={krakenStore.loadIcon.color}
@@ -51,9 +59,14 @@ export const DualMonitor = () => {
     <div className="info-container">
       <div className="info-title">
         <GpuIcon color={krakenStore.gpuIcon.color} opacity={krakenStore.gpuIcon.alpha} />
-        <span>{gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}</span>
+        <span style={{ fontSize: `${1 * 5}vw` }}>
+          {gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}
+        </span>
       </div>
-      <div className="info-data">
+      <div
+        className="info-data"
+        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
+      >
         <div className="info-icon temperature">
           <TempIcon
             color={krakenStore.temperatureIcon.color}
@@ -62,7 +75,10 @@ export const DualMonitor = () => {
         </div>
         <div className="data">{gpu?.temperature ?? 45}°</div>
       </div>
-      <div className="info-data">
+      <div
+        className="info-data"
+        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
+      >
         <div className="info-icon load">
           <LoadIcon
             color={krakenStore.loadIcon.color}
@@ -80,6 +96,7 @@ export const DualMonitor = () => {
   return (
     <Container
       style={{
+        fontFamily: krakenStore.text.font,
         backgroundColor:
           krakenStore.background.color + decToHex(krakenStore.background.alpha * 100),
       }}

@@ -1,6 +1,8 @@
 export type TModuleProperties = {
   color: string
   alpha: number
+  size?: number
+  font?: string
 }
 
 export type TBlendMode =

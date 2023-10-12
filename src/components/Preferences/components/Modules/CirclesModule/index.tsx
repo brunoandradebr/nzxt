@@ -28,6 +28,19 @@ export const CirclesModule = () => {
               })
             }
           />
+
+          {name !== 'leftCircleEnd' && name !== 'rightCircleEnd' && (
+            <Range
+              label="size"
+              value={preferencesStore.current[name].size}
+              onChange={value =>
+                preferencesStore.updateModule(name, {
+                  size: value,
+                })
+              }
+            />
+          )}
+
           <Range
             label="alpha"
             value={preferencesStore.current[name].alpha}

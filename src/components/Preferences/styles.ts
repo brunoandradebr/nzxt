@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: 'Segoe UI';
   font-size: 1.8rem;
   color: var(--text-primary-color);
   padding-inline: 10px;
@@ -42,7 +43,9 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       min-width: 160px;
+      height: fit-content;
       padding: 10px;
       border: 1px solid var(--background-contrast-lighter-color);
       border-radius: 15px;
@@ -52,6 +55,23 @@ export const Container = styled.div`
         background-color: var(--background-contrast-light-color);
         box-shadow: 0px 5px 25px 0px var(--background-contrast-dark-color);
         transform: translateY(-1px);
+      }
+
+      .selectContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block: 10px;
+        gap: 10px;
+        width: 100%;
+
+        .label {
+          font-size: 1.2rem;
+        }
+
+        select {
+          flex: 1;
+        }
       }
     }
   }

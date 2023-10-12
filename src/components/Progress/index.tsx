@@ -16,6 +16,10 @@ export const Progress = (props: IProgressProps) => {
   const clampedLeftValue = clampValue(leftValue * 0.5, 0, 100 * 2, circumference, 0)
   const clampedRightValue = clampValue(rightValue * 0.5, 0, 100 * 2, circumference, 0)
 
+  const leftThumbWidthScale = props.leftCircleStart?.size ?? 1
+  const rightThumbWidthScale = props.rightCircleStart?.size ?? 1
+  const circleWidthScale = props.background?.size ?? 1
+
   return (
     <Container>
       <svg width={`${size}px`} height={`${size}px`}>
@@ -52,7 +56,7 @@ export const Progress = (props: IProgressProps) => {
           cx={'50%'}
           cy={'50%'}
           r={`${radius}px`}
-          strokeWidth={`${lineWidth}px`}
+          strokeWidth={`${lineWidth * circleWidthScale}px`}
           stroke={props?.background?.color ?? '#161616'}
           style={{ opacity: props.background?.alpha }}
         />
@@ -62,7 +66,7 @@ export const Progress = (props: IProgressProps) => {
             cx={'50%'}
             cy={'50%'}
             r={`${radius}px`}
-            strokeWidth={`${thumbLineWidth}px`}
+            strokeWidth={`${thumbLineWidth * leftThumbWidthScale}px`}
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={clampedLeftValue}
             stroke="url(#gradient-left)"
@@ -71,7 +75,7 @@ export const Progress = (props: IProgressProps) => {
             cx={'50%'}
             cy={'50%'}
             r={`${radius}px`}
-            strokeWidth={`${thumbLineWidth}px`}
+            strokeWidth={`${thumbLineWidth * leftThumbWidthScale}px`}
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={clampedLeftValue}
             stroke="url(#gradient-left)"
@@ -83,7 +87,7 @@ export const Progress = (props: IProgressProps) => {
             cx={'50%'}
             cy={'50%'}
             r={`${radius}px`}
-            strokeWidth={`${thumbLineWidth}px`}
+            strokeWidth={`${thumbLineWidth * rightThumbWidthScale}px`}
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={clampedRightValue}
             stroke="url(#gradient-right)"
@@ -92,7 +96,7 @@ export const Progress = (props: IProgressProps) => {
             cx={'50%'}
             cy={'50%'}
             r={`${radius}px`}
-            strokeWidth={`${thumbLineWidth}px`}
+            strokeWidth={`${thumbLineWidth * rightThumbWidthScale}px`}
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={clampedRightValue}
             stroke="url(#gradient-right)"

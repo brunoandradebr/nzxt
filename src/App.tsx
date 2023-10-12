@@ -9,7 +9,7 @@ import { Preferences } from 'components/Preferences'
 import { DualMonitor } from 'components/DualMonitor'
 
 export const GlobalStyles = createGlobalStyle`
-
+  
   :root {
     --primary-color: #6f12e1;
     --primary-color-hover: #882df7;
@@ -36,7 +36,11 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: var(--background-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    font-family: 'Staatliches', sans-serif;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-family: 'Segoe UI';
+    
     font-size: 5vw;
   }
 
