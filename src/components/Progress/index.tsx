@@ -4,7 +4,7 @@ import { IProgressProps } from './types'
 import { Container } from './styles'
 
 export const Progress = (props: IProgressProps) => {
-  const displaySize = window.innerWidth
+  const displaySize = window?.nzxt?.v1?.width ?? window.innerWidth
   const lineWidth = displaySize / 12 ?? 12
   const thumbLineWidth = lineWidth
   const leftValue = props.leftValue ?? 0
