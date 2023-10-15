@@ -40,7 +40,7 @@ export const Header = () => {
     <Container>
       <div className="info">
         <div className="title">
-          Dual Info <span>v1.2.2</span>
+          Dual Info <span>v1.2.3</span>
         </div>
 
         <div className="author">
