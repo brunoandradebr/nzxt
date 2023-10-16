@@ -12,6 +12,7 @@
   "dependencies": {
     "@giphy/js-fetch-api": "^5.1.0",
     "@giphy/react-components": "^9.0.1",
+    "@nzxt/web-integrations-types": "^0.4.0",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "immer": "^10.0.2",
@@ -22,7 +23,6 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@nzxt/web-integrations-types": "^0.2.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",

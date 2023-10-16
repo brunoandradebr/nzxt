@@ -36,6 +36,7 @@ export const MiscModule = () => {
           >
             <option value="Segoe UI">Segoe UI</option>
             <option value="Staatliches">Staatliches</option>
+            <option value="DotGothic16">DotGothic16</option>
             <option value="Pixelify Sans">Pixelify Sans</option>
           </select>
         </div>

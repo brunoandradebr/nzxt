@@ -9,8 +9,14 @@ export const useMonitoring = () => {
   const [ram, setRam] = React.useState<IRam>()
 
   React.useEffect(() => {
+    const nzxtDefaults = window.nzxt?.v1
+
     window.nzxt = {
       v1: {
+        width: nzxtDefaults?.width ?? 0,
+        height: nzxtDefaults?.height ?? 0,
+        shape: nzxtDefaults?.shape ?? 'circle',
+        targetFps: nzxtDefaults?.targetFps ?? 10,
         onMonitoringDataUpdate: (data: MonitoringData) => {
           const { cpus, gpus, ram } = data
 

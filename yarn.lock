@@ -522,10 +522,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@nzxt/web-integrations-types@^0.2.0":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@nzxt/web-integrations-types/-/web-integrations-types-0.2.2.tgz#f04041efc7b65ff26ff117ed192fed533915cf90"
-  integrity sha512-OQN9OX21xdHZatl2tzyCoqzwS/cYqxYS13N9tQgUW8hQrsCj1aIMnSOWRIZfPMX/15Zx7gToUt7E3UhdaGAcQQ==
+"@nzxt/web-integrations-types@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@nzxt/web-integrations-types/-/web-integrations-types-0.4.0.tgz#258c0b010fdf077589c2675ab8b1c61d983b5039"
+  integrity sha512-ggbaSKql5eoN4Cm3s5fRv6EwWJPy+t0+DQzN2yiNTdQ7v140uP4H/0HUDprHmX1V8yv7GDI8TvlZSoZezprU1w==
 
 "@types/babel__core@^7.20.2":
   version "7.20.2"
@@ -997,9 +997,9 @@ dompurify@^2.2.2:
   integrity sha512-kxxKlPEDa6Nc5WJi+qRgPbOAbgTpSULL+vI3NUXsZMlkJxTqYI9wg5ZTay2sFrdZRWHPWNi+EdAhcJf81WtoMQ==
 
 electron-to-chromium@^1.4.535:
-  version "1.4.554"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.554.tgz#04e09c2ee31dc0f1546174033809b54cc372740b"
-  integrity sha512-Q0umzPJjfBrrj8unkONTgbKQXzXRrH7sVV7D9ea2yBV3Oaogz991yhbpfvo2LMNkJItmruXTEzVpP9cp7vaIiQ==
+  version "1.4.555"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.555.tgz#8f5a2ad8b5090570b9fa63577327dcddc3f40311"
+  integrity sha512-k1wGC7UXDTyCWcONkEMRG/w6Jvrxi+SVEU+IeqUKUKjv2lGJ1b+jf1mqrloyxVTG5WYYjNQ+F6+Cb1fGrLvNcA==
 
 error-stack-parser@^2.0.6:
   version "2.1.4"

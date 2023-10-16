@@ -4,8 +4,6 @@ import { IProgressProps } from './types'
 import { Container } from './styles'
 
 export const Progress = (props: IProgressProps) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const displaySize = window?.nzxt?.v1?.width ?? 0
   const lineWidth = displaySize / 12 ?? 12
   const thumbLineWidth = lineWidth

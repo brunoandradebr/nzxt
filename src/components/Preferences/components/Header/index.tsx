@@ -40,7 +40,7 @@ export const Header = () => {
     <Container>
       <div className="info">
         <div className="title">
-          Dual Info <span>v1.2.3</span>
+          Dual Info <span>v1.3.0</span>
         </div>
 
         <div className="author">
@@ -79,6 +79,7 @@ export const Header = () => {
         >
           <option value={'purple'}>Purple theme</option>
           <option value={'gif'}>Gif theme</option>
+          <option value={'pixel'}>Pixel theme</option>
           <option value={'user'}>User theme</option>
         </select>
 
