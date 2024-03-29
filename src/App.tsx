@@ -8,8 +8,15 @@ import { useKrakenStore } from 'store/kraken'
 import { Preferences } from 'components/Preferences'
 import { DualMonitor } from 'components/DualMonitor'
 
+import minecraft from 'fonts/Minecraft.ttf'
+
 export const GlobalStyles = createGlobalStyle`
   
+  @font-face {
+    font-family: 'Minecraft';
+    src: local('Minecraft'), url(${minecraft}) format('truetype');
+  }
+
   :root {
     --primary-color: #6f12e1;
     --primary-color-hover: #882df7;
@@ -40,6 +47,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Staatliches', sans-serif;
     font-family: 'Pixelify Sans', sans-serif;
     font-family: 'Segoe UI';
+    font-family: 'Minecraft';
     
     font-size: 5vw;
   }

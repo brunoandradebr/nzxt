@@ -38,6 +38,7 @@ export const MiscModule = () => {
             <option value="Staatliches">Staatliches</option>
             <option value="DotGothic16">DotGothic16</option>
             <option value="Pixelify Sans">Pixelify Sans</option>
+            <option value="Minecraft">Minecraft</option>
           </select>
         </div>
 
