@@ -13,6 +13,8 @@ export const theme: IPreferenceModule = {
   text: { color: '#ffffff', alpha: 1, size: 0.63, font: 'Segoe UI' },
   background: { color: '#000000', alpha: 1 },
   separator: { color: '#313131', alpha: 1 },
+  cpuLabel: { color: '#ffffff', alpha: 1 },
+  gpuLabel: { color: '#ffffff', alpha: 1 },
   gif: {
     alpha: 1,
     size: 0.2,

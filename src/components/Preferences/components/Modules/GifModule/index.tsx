@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 
 import { usePreferencesStore } from 'store/preferences'
 import { TBlendMode } from 'store/preferences/types'
@@ -22,6 +22,8 @@ const apiKey = import.meta.env.VITE_GIPHY_API
 const gf = new GiphyFetch(apiKey)
 
 export const GifModule = () => {
+  const blendSelectRef = React.useRef<HTMLSelectElement>(null)
+
   const preferencesStore = usePreferencesStore()
 
   const removeGifDialog = React.useRef<IDialogActions>(null)
@@ -36,15 +38,22 @@ export const GifModule = () => {
     preferencesStore.removeGif()
   }
 
+  const handleChangeBlend = (event: ChangeEvent<HTMLSelectElement>) => {
+    preferencesStore.updateGif({ blend: event.target.value as TBlendMode })
+
+    setTimeout(() => {
+      blendSelectRef?.current?.focus()
+    }, 100)
+  }
+
   const BlendSelect = () => (
     <div className="blendSelect">
       <span>Blend mode</span>
 
       <select
+        ref={blendSelectRef}
         defaultValue={preferencesStore.current.gif.blend}
-        onChange={event =>
-          preferencesStore.updateGif({ blend: event.target.value as TBlendMode })
-        }
+        onChange={handleChangeBlend}
       >
         <option value="normal">normal</option>
         <option value="multiply">multiply</option>

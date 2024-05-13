@@ -7,6 +7,8 @@ import { Range } from 'components/Preferences/components/Range'
 const modules: { name: keyof IModules; label: string }[] = [
   { name: 'background', label: 'Background' },
   { name: 'separator', label: 'Separator' },
+  { name: 'cpuLabel', label: 'CPU label' },
+  { name: 'gpuLabel', label: 'GPU label' },
 ]
 
 export const MiscModule = () => {

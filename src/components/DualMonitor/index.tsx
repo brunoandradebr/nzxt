@@ -21,7 +21,13 @@ export const DualMonitor = () => {
     <div className="info-container">
       <div className="info-title">
         <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
-        <span style={{ fontSize: `${1 * 5}vw` }}>
+        <span
+          style={{
+            fontSize: `${1 * 5}vw`,
+            color: krakenStore.cpuLabel.color,
+            opacity: krakenStore.cpuLabel.alpha,
+          }}
+        >
           {cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}
         </span>
       </div>
@@ -59,7 +65,13 @@ export const DualMonitor = () => {
     <div className="info-container">
       <div className="info-title">
         <GpuIcon color={krakenStore.gpuIcon.color} opacity={krakenStore.gpuIcon.alpha} />
-        <span style={{ fontSize: `${1 * 5}vw` }}>
+        <span
+          style={{
+            fontSize: `${1 * 5}vw`,
+            color: krakenStore.gpuLabel.color,
+            opacity: krakenStore.gpuLabel.alpha,
+          }}
+        >
           {gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}
         </span>
       </div>

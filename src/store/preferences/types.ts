@@ -46,6 +46,8 @@ export interface IModules {
   text: TModuleProperties
   background: TModuleProperties
   separator: TModuleProperties
+  cpuLabel: TModuleProperties
+  gpuLabel: TModuleProperties
 }
 
 export interface IPreferenceModule extends IModules {

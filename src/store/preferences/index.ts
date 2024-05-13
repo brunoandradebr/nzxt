@@ -83,7 +83,7 @@ export const usePreferencesStore = create<IPreferencesStore>()(
 
     {
       name: 'nzxt-preferences',
-      version: 8,
+      version: 9,
       merge(persistedState, currentState) {
         return { ...currentState, ...(persistedState as object) }
       },
