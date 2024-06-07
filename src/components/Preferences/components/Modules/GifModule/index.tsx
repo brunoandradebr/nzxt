@@ -1,4 +1,4 @@
-import React, { ChangeEvent, UIEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 
 import { usePreferencesStore } from 'store/preferences'
 import { TBlendMode } from 'store/preferences/types'
