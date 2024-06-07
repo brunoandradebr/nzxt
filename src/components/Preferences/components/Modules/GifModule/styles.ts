@@ -9,6 +9,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 10px;
     max-width: 150px;
+    margin-right: 10px;
 
     user-select: none;
     pointer-events: none;
@@ -41,6 +42,37 @@ export const Container = styled.div`
     }
   }
 
+  .gif-tab {
+    .gif-tabSelectorContainer {
+      display: flex;
+    }
+
+    .gif-tabSelector {
+      padding: 5px 15px;
+      border: 1px solid var(--background-contrast-lighter-color);
+      border-bottom: none;
+      cursor: pointer;
+
+      &.--is-active {
+        background-color: var(--primary-color);
+      }
+
+      &:first-of-type {
+        border-top-left-radius: 5px;
+        border-right: none;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 5px;
+      }
+    }
+
+    .gif-tabContent {
+      padding: 10px;
+      border: 1px solid var(--background-contrast-lighter-color);
+    }
+  }
+
   .search {
     display: flex;
     flex-direction: column;
@@ -70,7 +102,7 @@ export const Container = styled.div`
 
     .grid {
       margin-top: 50px;
-      max-height: 230px;
+      height: 400px;
     }
   }
 `

@@ -17,7 +17,6 @@ export const Container = styled.div`
     .module-segment {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
       gap: 10px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--background-contrast-lighter-color);

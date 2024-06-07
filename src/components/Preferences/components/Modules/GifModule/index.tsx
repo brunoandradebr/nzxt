@@ -1,12 +1,14 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, UIEvent } from 'react'
 
 import { usePreferencesStore } from 'store/preferences'
 import { TBlendMode } from 'store/preferences/types'
 
-import { useDebounce } from 'hooks'
+import { useDebounce, useWindowSize } from 'hooks'
 
 import { Grid } from '@giphy/react-components'
 import { GiphyFetch } from '@giphy/js-fetch-api'
+
+import GifPicker, { Theme } from 'gif-picker-react'
 
 import { AiOutlineSearch as SearchIcon, AiFillDelete as RemoveIcon } from 'react-icons/ai'
 
@@ -18,13 +20,18 @@ import giphyLogo from './assets/giphy.gif'
 
 import { Container } from './styles'
 
-const apiKey = import.meta.env.VITE_GIPHY_API
-const gf = new GiphyFetch(apiKey)
+const tenorApiKey = import.meta.env.VITE_TENOR_API
+const giphyApiKey = import.meta.env.VITE_GIPHY_API
+const gf = new GiphyFetch(giphyApiKey)
 
 export const GifModule = () => {
   const blendSelectRef = React.useRef<HTMLSelectElement>(null)
 
   const preferencesStore = usePreferencesStore()
+
+  const [windowWidth] = useWindowSize()
+
+  const [gifEngine, setGifEngine] = React.useState('giphy')
 
   const removeGifDialog = React.useRef<IDialogActions>(null)
 
@@ -90,6 +97,7 @@ export const GifModule = () => {
           autoPlay
           muted
           loop
+          poster={preferencesStore.current.gif.url}
           controls={false}
           width={120}
         />
@@ -147,27 +155,60 @@ export const GifModule = () => {
         />
       </div>
 
-      <div className="search">
-        <div className="searchInput">
-          <input
-            type="text"
-            defaultValue={searchTerm}
-            onChange={event => setSearchTerm(event.target.value)}
-            placeholder="search gif"
-          />
-          <SearchIcon />
-          <img src={giphyLogo} height={36} />
+      <div className="gif-tab">
+        <div className="gif-tabSelectorContainer">
+          <div
+            className={`gif-tabSelector ${gifEngine === 'giphy' ? '--is-active' : ''}`}
+            onClick={() => setGifEngine('giphy')}
+          >
+            Giphy
+          </div>
+
+          <div
+            className={`gif-tabSelector ${gifEngine === 'tenor' ? '--is-active' : ''}`}
+            onClick={() => setGifEngine('tenor')}
+          >
+            Tenor
+          </div>
         </div>
 
-        <Grid
-          className="grid"
-          key={debouncedTerm as string}
-          width={window.innerWidth - 250}
-          columns={4}
-          noLink
-          fetchGifs={fetchGifs}
-          onGifClick={gif => preferencesStore.updateGif({ url: gif.images.original.mp4 })}
-        />
+        <div className="gif-tabContent">
+          {gifEngine === 'tenor' ? (
+            <GifPicker
+              tenorApiKey={tenorApiKey}
+              theme={Theme.DARK}
+              width={windowWidth - 250}
+              onGifClick={gif => preferencesStore.updateGif({ url: gif.url })}
+            />
+          ) : (
+            <>
+              <div className="search">
+                <div className="searchInput">
+                  <input
+                    type="text"
+                    defaultValue={searchTerm}
+                    onChange={event => setSearchTerm(event.target.value)}
+                    placeholder="search gif"
+                  />
+                  <SearchIcon />
+                  <img src={giphyLogo} height={36} />
+                </div>
+
+                <Grid
+                  className="grid"
+                  key={debouncedTerm as string}
+                  width={windowWidth - 250}
+                  columns={4}
+                  noLink
+                  fetchGifs={fetchGifs}
+                  onGifClick={gif =>
+                    preferencesStore.updateGif({ url: gif.images.original.mp4 })
+                  }
+                />
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <Dialog

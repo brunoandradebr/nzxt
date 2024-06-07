@@ -118,6 +118,7 @@ export const DualMonitor = () => {
         loop
         muted
         src={krakenStore.gif.url}
+        poster={krakenStore.gif.url}
         width={`${(krakenStore.gif.size ?? 1) * 500}%`}
         style={{
           mixBlendMode: krakenStore.gif.blend,
