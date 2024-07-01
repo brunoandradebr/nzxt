@@ -72,7 +72,8 @@ export const DualMonitor = () => {
             opacity: krakenStore.gpuLabel.alpha,
           }}
         >
-          {gpu?.name?.replace(/nvidia geforce/gi, '') ?? 'RTX 3080 Ti'}
+          {gpu?.name?.replace(/nvidia geforce/gi, '').replace(/amd radeon/gi, '') ??
+            'RTX 3080 Ti'}
         </span>
       </div>
       <div
