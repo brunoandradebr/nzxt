@@ -3,6 +3,7 @@ export type TModuleProperties = {
   alpha: number
   size?: number
   font?: string
+  outline: string
 }
 
 export type TBlendMode =
@@ -44,6 +45,7 @@ export interface IModules {
   temperatureIcon: TModuleProperties
   loadIcon: TModuleProperties
   text: TModuleProperties
+  outline: TModuleProperties
   background: TModuleProperties
   separator: TModuleProperties
   cpuLabel: TModuleProperties

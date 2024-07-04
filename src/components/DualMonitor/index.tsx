@@ -18,47 +18,60 @@ export const DualMonitor = () => {
   const { cpu, gpu } = useMonitoring()
 
   const Cpu = () => (
-    <div className="info-container">
-      <div className="info-title">
-        <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
-        <span
-          style={{
-            fontSize: `${1 * 5}vw`,
-            color: krakenStore.cpuLabel.color,
-            opacity: krakenStore.cpuLabel.alpha,
-          }}
+    
+      <div className="info-container">
+        <div className="info-title">
+          <CpuIcon color={krakenStore.cpuIcon.color} opacity={krakenStore.cpuIcon.alpha} />
+          <span
+            style={{
+              fontSize: `${1 * 5}vw`,
+              color: krakenStore.cpuLabel.color,
+              opacity: krakenStore.cpuLabel.alpha,
+              WebkitTextStroke: `${2 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`,
+            }}
+          >
+            {cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}
+          </span>
+        </div>
+        <div
+          className="info-data"
+          style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
         >
-          {cpu?.name?.replace(/(core|ryzen \d)/gi, '').trim() ?? 'i9 11900K'}
-        </span>
-      </div>
-      <div
-        className="info-data"
-        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
-      >
-        <div className="info-icon temperature">
-          <TempIcon
-            color={krakenStore.temperatureIcon.color}
-            opacity={krakenStore.temperatureIcon.alpha}
-          />
+          <div className="info-icon temperature">
+            <TempIcon
+              color={krakenStore.temperatureIcon.color}
+              opacity={krakenStore.temperatureIcon.alpha}
+            />
+          </div>
+          <div className="data"
+            style={{
+              WebkitTextStroke: `${5 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+            }}
+          >{cpu?.temperature ?? 42}°</div>
         </div>
-        <div className="data">{cpu?.temperature ?? 42}°</div>
-      </div>
-      <div
-        className="info-data"
-        style={{ fontSize: `${16 * (krakenStore.text.size ?? 1)}vw` }}
-      >
-        <div className="info-icon load">
-          <LoadIcon
-            color={krakenStore.loadIcon.color}
-            opacity={krakenStore.loadIcon.alpha}
-          />
+        <div
+          className="info-data"
+          style={{ 
+            fontSize: `${16 * (krakenStore.text.size ?? 1)}vw`,
+            WebkitTextStroke: `${5 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+           }}
+        >
+          <div className="info-icon load">
+            <LoadIcon
+              color={krakenStore.loadIcon.color}
+              opacity={krakenStore.loadIcon.alpha}
+            />
+          </div>
+          <div className="data"
+            style={{
+              WebkitTextStroke: `${5 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+            }}
+          >
+            {cpu?.load ?? 3}
+            <span>%</span>
+          </div>
         </div>
-        <div className="data">
-          {cpu?.load ?? 3}
-          <span>%</span>
-        </div>
       </div>
-    </div>
   )
 
   const Gpu = () => (
@@ -70,6 +83,7 @@ export const DualMonitor = () => {
             fontSize: `${1 * 5}vw`,
             color: krakenStore.gpuLabel.color,
             opacity: krakenStore.gpuLabel.alpha,
+            WebkitTextStroke: `${2 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`,
           }}
         >
           {gpu?.name?.replace(/nvidia geforce/gi, '').replace(/amd radeon/gi, '') ??
@@ -86,7 +100,11 @@ export const DualMonitor = () => {
             opacity={krakenStore.temperatureIcon.alpha}
           />
         </div>
-        <div className="data">{gpu?.temperature ?? 45}°</div>
+        <div className="data"
+          style={{
+            WebkitTextStroke: `${5 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+          }}
+        >{gpu?.temperature ?? 45}°</div>
       </div>
       <div
         className="info-data"
@@ -98,7 +116,10 @@ export const DualMonitor = () => {
             opacity={krakenStore.loadIcon.alpha}
           />
         </div>
-        <div className="data">
+        <div className="data"
+        style={{WebkitTextStroke: `${5 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+        }}
+      >
           {gpu?.load ?? 12}
           <span>%</span>
         </div>

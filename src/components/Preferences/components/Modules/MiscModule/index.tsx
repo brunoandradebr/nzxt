@@ -65,6 +65,28 @@ export const MiscModule = () => {
         />
       </div>
 
+      <div className="module">
+        <ColorPicker
+          label={'Outline'}
+          value={preferencesStore.current.text.color}
+          onChange={value =>
+            preferencesStore.updateModule('outline', {
+              color: value,
+            })
+          }
+        />
+
+        <Range
+          label="size"
+          value={preferencesStore.current.text.size}
+          onChange={value =>
+            preferencesStore.updateModule('outline', {
+              size: value,
+            })
+          }
+        />
+      </div>
+
       {modules.map(({ name, label }) => (
         <div className="module" key={name}>
           <ColorPicker
