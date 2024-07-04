@@ -68,7 +68,11 @@ export const DualMonitor = () => {
             }}
           >
             {cpu?.load ?? 3}
-            <span>%</span>
+            <span
+            style={{
+              WebkitTextStroke: `${2 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+            }}
+            >%</span>
           </div>
         </div>
       </div>
@@ -121,7 +125,11 @@ export const DualMonitor = () => {
         }}
       >
           {gpu?.load ?? 12}
-          <span>%</span>
+          <span
+            style={{
+              WebkitTextStroke: `${2 * (krakenStore.outline.size ?? 1)}px ${krakenStore.outline.color}`
+            }}
+          >%</span>
         </div>
       </div>
     </div>
