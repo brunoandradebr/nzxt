@@ -26,7 +26,7 @@ export const useMonitoring = () => {
 
           if (gpus.length > 1) {
             const [mainGpu] = gpus.filter(
-              card => !card.name.includes('Graphics') && !card.name.includes('Dell'),
+              card => !card.name.includes('Graphics') && !card.name.includes('Display')
             )
             gpu = mainGpu
           } else {
