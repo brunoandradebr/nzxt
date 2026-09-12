@@ -1,3 +1,6 @@
+⚠️ this project will not receive any new features since my kraken LCD display is broken. For a more complete customization with more features see [NZXT-ESC](https://github.com/mrgogo7/nzxt-esc/)
+
+
 # NZXT
 
 [Web integrations](https://developer.nzxt.com/) for the NZXT Kraken series.
